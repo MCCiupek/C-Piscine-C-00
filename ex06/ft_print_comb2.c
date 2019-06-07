@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_comb.c                                    :+:      :+:    :+:   */
+/*   ft_print_comb2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mciupek <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/06 09:19:08 by mciupek           #+#    #+#             */
-/*   Updated: 2019/06/06 21:43:58 by mciupek          ###   ########.fr       */
+/*   Created: 2019/06/06 11:05:43 by mciupek           #+#    #+#             */
+/*   Updated: 2019/06/07 09:43:13 by mciupek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,30 +17,39 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-void	ft_print_comb(void)
+void	ft_putchar_multi(char c1, char c2, char c3, char c4)
 {
-	char u;
-	char d;
-	char c;
+	ft_putchar(c1);
+	ft_putchar(c2);
+	ft_putchar(' ');
+	ft_putchar(c3);
+	ft_putchar(c4);
+	if (c1 != '9' || c2 != '8' || c3 != '9' || c4 != '9')
+		write(1, ", ", 2);
+}
 
-	c = 48;
-	while (c <= 7 + 48)
+void	ft_print_comb2(void)
+{
+	char x1;
+	char x2;
+	char y1;
+	char y2;
+
+	x1 = '/';
+	while (++x1 <= '9')
 	{
-		d = c + 1;
-		while (d <= 8 + 48)
+		x2 = '/';
+		while (++x2 <= '9')
 		{
-			u = d + 1;
-			while (u <= 9 + 48)
+			y1 = x1 - 1;
+			while (++y1 <= '9')
 			{
-				ft_putchar(c);
-				ft_putchar(d);
-				ft_putchar(u);
-				if (c != 7 + 48 || d != 8 + 48 || u != 9 + 48)
-					write(1, ", ", 2);
-				u++;
+				y2 = x2;
+				while (++y2 <= '9')
+				{
+					ft_putchar_multi(x1, x2, y1, y2);
+				}
 			}
-			d++;
 		}
-		c++;
 	}
 }
